@@ -1,9 +1,60 @@
 ---
 import Layout from '@layouts/Layout.astro';
-const gh = '';
-const title = '';
+const gh = 'https://github.com/jws-playground/js-glitch-effect';
+const title = 'js-glitch-effect';
 ---
 
 <Layout pageId='top' gh={gh} title={title}>
-  <div class='container'></div>
+  <div class='bg' data-bg='01'>
+    <div class='glitch glitch-1'></div>
+  </div>
 </Layout>
+
+<style is:inline>
+  .bg {
+    width: 100%;
+    /* height: calc(var(--vph) * 1px); */
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  .glitch {
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    /* height: calc(var(--vph) * 1px); */
+    height: 100%;
+    /* top: 50%;
+    left: 50%; */
+    top: 0;
+    left: 0;
+    /* transform: translate(-50%, -50%); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url('https://assets.codepen.io/4788040/horror1.jpg');
+  }
+</style>
+
+<script
+  src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'
+  is:inline></script>
+<script
+  src='https://cdn.jsdelivr.net/gh/hmongouachon/mgGlitch/src/mgGlitch.min.js'
+  defer
+  is:inline></script>
+<script is:inline defer>
+  $(function () {
+    $('.glitch').mgGlitch({
+      destroy: false,
+      glitch: true,
+      scale: true,
+      blend: true,
+      blendModeType: 'hue',
+      glitch1TimeMin: 200,
+      glitch1TimeMax: 400,
+      glitch2TimeMin: 10,
+      glitch2TimeMax: 100,
+    });
+  });
+</script>
